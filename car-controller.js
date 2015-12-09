@@ -10,6 +10,7 @@ var pins = [LEFT_FORWARD,LEFT_BACK,RIGHT_FORWARD,RIGHT_BACK];
 
 pins.forEach(function(pin){
 	gpio.setup(pin, gpio.DIR_OUT, function(){
+		console.log(arguments);
 		console.log(pin.toString() + " ready");
 	});
 });
