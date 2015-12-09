@@ -1,25 +1,27 @@
 var gpio = require('rpi-gpio');
 
-var LEFT_FORWARD = 1;
-var LEFT_BACK = 2;
-var RIGHT_FORWARD = 3;
-var RIGHT_BACK = 4;
+var LEFT_FORWARD = 17;
+var LEFT_BACK = 18;
+var RIGHT_FORWARD = 22;
+var RIGHT_BACK = 23;
 
 var pins = [LEFT_FORWARD,LEFT_BACK,RIGHT_FORWARD,RIGHT_BACK];
+
 
 pins.forEach(function(pin){
 	gpio.setup(pin, gpio.DIR_OUT, function(){
 		console.log(pin.toString() + " ready");
 	});
-})
+});
+
 
 function write(high, low){
 	var cb = function(err){
 		if (err) console.log(err.toString());
-	}
+	};
 	var writeValue = function(pin, value){
-		gpio.write(pin, value, cb)
-	}
+		gpio.write(pin, value, cb);
+	};
 	high.forEach(function(pin){
 		writeValue(pin, true);
 	});
@@ -37,7 +39,7 @@ function clear(){
 module.exports.stop = function(){
 	write([], pins);
 	currentAction = undefined;
-}
+};
 
 module.exports.fwd = function(time){
 	clear();
@@ -45,6 +47,6 @@ module.exports.fwd = function(time){
 	currentAction = setTimeout(function(){
 		write([], [LEFT_FORWARD, RIGHT_FORWARD]);
 	},time);
-}
+};
 
 
