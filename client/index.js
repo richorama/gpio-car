@@ -1,14 +1,12 @@
-var socket = require('engine.io-client')('ws://localhost:3000');
-socket.on('open', function(){
-  console.log("socket is open");
-  socket.on('message', function(data){
-	  console.log(JSON.parse(data));
-  });
-  socket.on('close', function(){});
-});
+var http = require('superagent');
 
 function send(message){
-	socket.send(JSON.stringify(message));
+  http.post('/')
+    .send(message)
+    .end(function(err, data){
+      if (err) console.log(err);
+      if (data) console.log(data);
+    });
 }
 
 window.fwd = function(time){

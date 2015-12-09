@@ -1,19 +1,7 @@
-var engine = require('engine.io');
 var http = require('http').createServer(handler).listen(3000);
 var fs = require('fs');
 var path = require('path');
 var controller = require('./car-controller');
-
-var server = engine.attach(http);
-
-server.on('connection', function (socket) {
-  socket.on('message', function(data){
-    var message = JSON.parse(data);
-    if (!message) return;
-    handleMessage(message);
-   });
-  socket.on('close', function(){ });
-});
 
 function handleMessage(message){
   controller[message.command](message.duration || 1000);
@@ -21,6 +9,18 @@ function handleMessage(message){
 
 // serve static files it the public folder
 function handler(req, res){
+  if (req.method === "POST"){
+    var data = "";
+    req.on("data", function(chunk){
+      data += chunk.toString();
+    });
+    req.on("end", function(){
+      handleMessage(JSON.parse(data));
+      res.end();
+    });
+    return;
+  }
+
   var filename = req.url.replace('/', '');
   if (!filename) filename = "index.html";
 
