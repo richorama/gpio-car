@@ -50,4 +50,12 @@ module.exports.fwd = function(time){
 	},time);
 };
 
+module.exports.back = function(time){
+	clear();
+	write([LEFT_BACK, RIGHT_BACK], [LEFT_FORWARD, RIGHT_FORWARD]);
+	currentAction = setTimeout(function(){
+		write([], [LEFT_BACK, RIGHT_BACK]);
+	},time);
+};
+
 

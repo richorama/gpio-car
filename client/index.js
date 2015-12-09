@@ -5,12 +5,16 @@ function send(message){
     .send(message)
     .end(function(err, data){
       if (err) console.log(err);
-      if (data) console.log(data);
+      if (data.text) console.log(data);
     });
 }
 
 window.fwd = function(time){
 	send({command:"fwd", duration : time || 10000});
+}
+
+window.back = function(time){
+  send({command:"back", duration : time || 10000})
 }
 
 window.stop = function(){
