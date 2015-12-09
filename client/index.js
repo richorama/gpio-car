@@ -11,12 +11,12 @@ function send(message){
 
 window.fwd = function(time){
 	send({command:"fwd", duration : time || 10000});
-}
+};
 
 window.back = function(time){
   send({command:"back", duration : time || 10000})
-}
+};
 
 window.stop = function(){
 	send({command:"stop"});
-}
+};

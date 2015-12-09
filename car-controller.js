@@ -1,9 +1,9 @@
 var gpio = require('rpi-gpio');
 
-var LEFT_FORWARD = 7;
+var LEFT_FORWARD = 17;
 var LEFT_BACK = 18;
-var RIGHT_FORWARD = 22;
-var RIGHT_BACK = 23;
+var RIGHT_FORWARD = 27;
+var RIGHT_BACK = 22;
 
 var pins = [LEFT_FORWARD,LEFT_BACK,RIGHT_FORWARD,RIGHT_BACK];
 
