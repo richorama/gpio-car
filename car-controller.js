@@ -7,14 +7,24 @@ var RIGHT_BACK = 23;
 
 var pins = [LEFT_FORWARD,LEFT_BACK,RIGHT_FORWARD,RIGHT_BACK];
 
-
-pins.forEach(function(pin){
-	gpio.setup(pin, gpio.DIR_OUT, function(){
-		console.log(arguments);
-		console.log(pin.toString() + " ready");
+module.exports = function(cb){
+	var counter = 0;
+	pins.forEach(function(pin){
+		gpio.setup(pin, gpio.DIR_OUT, function(err){
+			console.log(arguments);
+			if (err) return console.log(err);
+			console.log(pin.toString() + " ready");
+			counter++;
+			if (pins.length === counter) {
+				gpio.write(LEFT_FORWARD, true, function(){
+					console.log(arguments);
+				})
+				cb()
+			}
+		});
 	});
-});
 
+}
 
 function write(high, low){
 	var cb = function(err){
