@@ -1,11 +1,15 @@
 var http = require('superagent');
+var controls = require('./controls.jsx');
+controls(function(command){
+  send({command:command, duration: 10000});
+});
 
 function send(message){
-  http.post('/')
+  http.post('/command')
     .send(message)
     .end(function(err, data){
       if (err) console.log(err);
-      if (data.text) console.log(data);
+      if (data.text) console.log(data.text);
     });
 }
 
