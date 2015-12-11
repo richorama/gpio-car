@@ -58,4 +58,18 @@ module.exports.back = function(time){
 	},time);
 };
 
+module.exports.spinl = function(time){
+	clear();
+	write([LEFT_BACK, RIGHT_FORWARD], [LEFT_FORWARD, RIGHT_BACK]);
+	currentAction = setTimeout(function(){
+		write([], [LEFT_BACK, RIGHT_FORWARD]);
+	},time);
+}
 
+module.exports.spinr = function(time){
+	clear();
+	write([LEFT_FORWARD, RIGHT_BACK], [LEFT_BACK, RIGHT_FORWARD]);
+	currentAction = setTimeout(function(){
+		write([], [LEFT_FORWARD, RIGHT_BACK]);
+	},time);
+}

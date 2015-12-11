@@ -20,3 +20,11 @@ window.back = function(time){
 window.stop = function(){
 	send({command:"stop"});
 };
+
+window.spinl = function(time){
+  send({command:"spinl", duration : time || 1000})
+}
+
+window.spinr = function(time){
+  send({command:"spinr", duration : time || 1000})
+}
