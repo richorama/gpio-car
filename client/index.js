@@ -5,6 +5,7 @@ controls(function(command){
 });
 
 function send(message){
+  console.log("sending " + message.command);
   http.post('/command')
     .send(message)
     .end(function(err, data){
@@ -31,4 +32,23 @@ window.spinl = function(time){
 
 window.spinr = function(time){
   send({command:"spinr", duration : time || 1000})
+}
+
+var currentCommand = "stop";
+window.onkeydown = function(e){
+  var mapping = {
+    "Up" : "fwd",
+    "Down" : "back",
+    "Left" : "spinl",
+    "Right" : "spinr"
+  };
+  var command = mapping[e.keyIdentifier];
+  if (currentCommand === command) return;
+  if (command) send({command:command, duration:10000});
+  currentCommand = command;
+}
+
+window.onkeyup = function(e){
+  currentCommand = "stop";
+  send({command:"stop"});
 }
