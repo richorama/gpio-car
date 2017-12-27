@@ -1,10 +1,21 @@
 var http = require('http').createServer(handler).listen(3000);
 var fs = require('fs');
 var path = require('path');
-var controller = require('./car-controller');
+try{
+  var controller = require('./car-controller');
+} catch(e){
+  console.log(e);
+}
 
-function handleMessage(message){
-  controller[message.command](message.duration || 1000);
+function handleMessage(actions){
+  var action = actions.pop();
+  if (null == action) return;
+  if (action.action === "drive"){
+    controller[action.direction](action.amount, () => {
+      handleMessage(actions);
+    });
+  }
+  //controller[message.command](message.duration || 1000);
 }
 
 // serve static files it the public folder

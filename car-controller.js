@@ -42,7 +42,7 @@ module.exports.stop = function(){
 	currentAction = undefined;
 };
 
-module.exports.fwd = function(time){
+module.exports.fwd = function(time, cb){
 	clear();
 	write([LEFT_FORWARD, RIGHT_FORWARD], [LEFT_BACK, RIGHT_BACK]);
 	currentAction = setTimeout(function(){
@@ -50,7 +50,7 @@ module.exports.fwd = function(time){
 	},time);
 };
 
-module.exports.back = function(time){
+module.exports.back = function(time, cb){
 	clear();
 	write([LEFT_BACK, RIGHT_BACK], [LEFT_FORWARD, RIGHT_FORWARD]);
 	currentAction = setTimeout(function(){
@@ -58,7 +58,7 @@ module.exports.back = function(time){
 	},time);
 };
 
-module.exports.spinl = function(time){
+module.exports.spinl = function(time, cb){
 	clear();
 	write([LEFT_BACK, RIGHT_FORWARD], [LEFT_FORWARD, RIGHT_BACK]);
 	currentAction = setTimeout(function(){
@@ -66,7 +66,7 @@ module.exports.spinl = function(time){
 	},time);
 }
 
-module.exports.spinr = function(time){
+module.exports.spinr = function(time, cb){
 	clear();
 	write([LEFT_FORWARD, RIGHT_BACK], [LEFT_BACK, RIGHT_FORWARD]);
 	currentAction = setTimeout(function(){
