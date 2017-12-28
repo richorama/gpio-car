@@ -68,7 +68,6 @@ Blockly.JavaScript['gpio_wait'] = function(block) {
 function go(){
   Blockly.JavaScript.addReservedWords('code');
   var code = Blockly.JavaScript.workspaceToCode(workspace);
-  console.log(code);
 
   var actions = [];
   try {
@@ -76,7 +75,10 @@ function go(){
   } catch (e) {
     alert(e);
   }
-  console.log(actions);
+
+  if (actions.length > 0){
+    send(JSON.stringify(actions), function(){});
+  }
 }
 
 function xml(){
@@ -95,10 +97,9 @@ var workspace = Blockly.inject('blocklyDiv', {
 workspace.registerButtonCallback("go", go);  
 workspace.updateToolbox( document.getElementById('toolbox'));
 
-
 function send(payload, cb){
-  var oReq = new XMLHttpRequest();
-  oReq.addEventListener("load", cb);
-  oReq.open("POST", "");
-  oReq.send();
+  var req = new XMLHttpRequest();
+  req.addEventListener("load", cb);
+  req.open("POST", "");
+  req.send(payload);
 }
