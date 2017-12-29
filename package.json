@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
-    "rpi-gpio": "^0.7.0"
+    "rpi-gpio": "0.7.0"
   },
   "devDependencies": {},
   "scripts": {
