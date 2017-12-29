@@ -1,11 +1,7 @@
 var http = require('http').createServer(handler).listen(3000);
 var fs = require('fs');
 var path = require('path');
-try{
-  var controller = require('./car-controller');
-} catch(e){
-  console.log(e);
-}
+var controller = require('./car-controller');
 
 function handleMessage(actions){
   var action = actions.pop();
