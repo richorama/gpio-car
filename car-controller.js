@@ -47,6 +47,7 @@ module.exports.fwd = function(time, cb){
 	write([LEFT_FORWARD, RIGHT_FORWARD], [LEFT_BACK, RIGHT_BACK]);
 	currentAction = setTimeout(function(){
 		write([], [LEFT_FORWARD, RIGHT_FORWARD]);
+		cb();
 	},time);
 };
 
@@ -55,6 +56,7 @@ module.exports.back = function(time, cb){
 	write([LEFT_BACK, RIGHT_BACK], [LEFT_FORWARD, RIGHT_FORWARD]);
 	currentAction = setTimeout(function(){
 		write([], [LEFT_BACK, RIGHT_BACK]);
+		cb();
 	},time);
 };
 
@@ -63,6 +65,7 @@ module.exports.spinl = function(time, cb){
 	write([LEFT_BACK, RIGHT_FORWARD], [LEFT_FORWARD, RIGHT_BACK]);
 	currentAction = setTimeout(function(){
 		write([], [LEFT_BACK, RIGHT_FORWARD]);
+		cb();
 	},time);
 }
 
@@ -71,5 +74,6 @@ module.exports.spinr = function(time, cb){
 	write([LEFT_FORWARD, RIGHT_BACK], [LEFT_BACK, RIGHT_FORWARD]);
 	currentAction = setTimeout(function(){
 		write([], [LEFT_FORWARD, RIGHT_BACK]);
+		cb();
 	},time);
 }
