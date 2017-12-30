@@ -62,6 +62,23 @@ Blockly.JavaScript['gpio_light'] = function(block) {
   return code;
 };
 
+
+Blockly.Blocks['gpio_photo'] = {
+	init: function() {
+		this.appendDummyInput()
+			.appendField("Photo")
+		this.setColour(105);
+		this.setTooltip("");
+		this.setPreviousStatement(true, null);
+    	this.setNextStatement(true, null);
+		this.setHelpUrl("");
+	}
+};
+
+Blockly.JavaScript['gpio_photo'] = function(block) {
+  return 'actions.push({action:"photo"});\n';
+};
+
 Blockly.Blocks['gpio_wait'] = {
   init: function() {
     this.appendDummyInput()

@@ -2,6 +2,9 @@ var http = require('http').createServer(handler).listen(3000);
 var fs = require('fs');
 var path = require('path');
 var controller = require('./car-controller');
+var exec = require('child_process').exec;
+
+// 
 
 function handleMessage(actions){
   var action = actions.shift();
@@ -11,9 +14,18 @@ function handleMessage(actions){
       handleMessage(actions);
     });
   }
+  
   if (action.action === "wait"){
     setTimeout(() => handleMessage(actions), action.amount || 1000);
   }
+
+  if (action.action === "photo"){
+    exec('raspistill -vf -hf -o ./public/cam.jpg', function callback(error, stdout, stderr){
+        if (err) console.log(err);
+        handleMessage(actions);
+    });
+  }
+
   //controller[message.command](message.duration || 1000);
 }
 
