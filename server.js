@@ -11,6 +11,9 @@ function handleMessage(actions){
       handleMessage(actions);
     });
   }
+  if (action.action === "wait"){
+    setTimeout(() => handleMessage(actions), action.amount || 1000);
+  }
   //controller[message.command](message.duration || 1000);
 }
 
