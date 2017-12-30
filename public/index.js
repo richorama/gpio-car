@@ -84,7 +84,6 @@ Blockly.Blocks['gpio_wait'] = {
     this.appendDummyInput()
         .appendField("Wait")
         .appendField(new Blockly.FieldNumber(0), "NAME")
-        .appendField("seconds");
     this.setColour(105);
 	this.setTooltip("");
 	this.setPreviousStatement(true, null);

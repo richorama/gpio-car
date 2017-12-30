@@ -14,13 +14,13 @@ function handleMessage(actions){
       handleMessage(actions);
     });
   }
-  
+
   if (action.action === "wait"){
     setTimeout(() => handleMessage(actions), action.amount || 1000);
   }
 
   if (action.action === "photo"){
-    exec('raspistill -vf -hf -o ./public/cam.jpg', function callback(error, stdout, stderr){
+    exec('raspistill -vf -hf -o ./public/cam.jpg', function callback(err, stdout, stderr){
         if (err) console.log(err);
         handleMessage(actions);
     });
