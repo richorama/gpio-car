@@ -4,7 +4,7 @@ var path = require('path');
 var controller = require('./car-controller');
 
 function handleMessage(actions){
-  var action = actions.pop();
+  var action = actions.shift();
   if (null == action) return;
   if (action.action === "drive"){
     controller[action.direction](action.amount, () => {
