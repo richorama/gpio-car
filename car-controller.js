@@ -4,6 +4,7 @@ var LEFT_FORWARD = 21;
 var LEFT_BACK = 22;
 var RIGHT_FORWARD = 23;
 var RIGHT_BACK = 24;
+var LIGHT = 26;
 
 var pins = [LEFT_FORWARD,LEFT_BACK,RIGHT_FORWARD,RIGHT_BACK];
 
@@ -12,6 +13,10 @@ pins.forEach(function(pin){
 	gpio.setup(pin, gpio.DIR_OUT, function(err){
 		if (err) return console.log(err);
 		console.log(pin.toString() + " ready");
+	});
+	gpio.setup(LIGHT, gpio.DIR_OUT, function(err){
+		if (err) return console.log(err);
+		console.log(LIGHT + " ready");
 	});
 });
 
@@ -76,4 +81,13 @@ module.exports.spinr = function(time, cb){
 		write([], [LEFT_FORWARD, RIGHT_BACK]);
 		cb();
 	},time);
+}
+
+module.exports.light = function(on, cb){
+	if (on)	{
+		write([LIGHT], []);
+		return cb();
+	}
+	write([], [LIGHT]);
+	cb();
 }

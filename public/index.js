@@ -42,6 +42,26 @@ Blockly.JavaScript['gpio_drive'] = function(block) {
   return code;
 };
 
+Blockly.Blocks['gpio_light'] = {
+	init: function() {
+		this.appendDummyInput()
+			.appendField("Light")
+			.appendField(new Blockly.FieldDropdown([["on","1"], ["off","0"]]), "ONOFF")
+		this.setColour(105);
+		this.setTooltip("");
+		this.setPreviousStatement(true, null);
+    	this.setNextStatement(true, null);
+		this.setHelpUrl("");
+	}
+};
+
+Blockly.JavaScript['gpio_light'] = function(block) {
+  var dropdown_movement = block.getFieldValue('ONOFF');
+  // TODO: Assemble JavaScript into code variable.
+  var code = 'actions.push({action:"drive", direction:"light", amount:' + dropdown_movement + '});\n';
+  return code;
+};
+
 Blockly.Blocks['gpio_wait'] = {
   init: function() {
     this.appendDummyInput()
