@@ -14,10 +14,6 @@ Blockly.Blocks['gpio_instructions'] = {
 
 Blockly.JavaScript['gpio_instructions'] = function(block) {
   return Blockly.JavaScript.statementToCode(block, 'NAME');
-  // TODO: Assemble JavaScript into code variable.
-  //console.log(statements_name);
-  //var code = 'gpio_instructions;\n';
-  //return code;
 };
 
 Blockly.Blocks['gpio_drive'] = {
@@ -37,7 +33,6 @@ Blockly.Blocks['gpio_drive'] = {
 Blockly.JavaScript['gpio_drive'] = function(block) {
   var dropdown_movement = block.getFieldValue('MOVEMENT');
   var number_amount = block.getFieldValue('AMOUNT');
-  // TODO: Assemble JavaScript into code variable.
   var code = 'actions.push({action:"drive", direction:"' + dropdown_movement + '", amount:' + number_amount + '});\n';
   return code;
 };
@@ -57,7 +52,6 @@ Blockly.Blocks['gpio_light'] = {
 
 Blockly.JavaScript['gpio_light'] = function(block) {
   var dropdown_movement = block.getFieldValue('ONOFF');
-  // TODO: Assemble JavaScript into code variable.
   var code = 'actions.push({action:"drive", direction:"light", amount:' + dropdown_movement + '});\n';
   return code;
 };
@@ -94,7 +88,6 @@ Blockly.Blocks['gpio_wait'] = {
 
 Blockly.JavaScript['gpio_wait'] = function(block) {
   var number_name = block.getFieldValue('NAME');
-  // TODO: Assemble JavaScript into code variable.
   var code = 'actions.push({action:"wait", amount:' + number_name + '});\n';
   return code;
 };
@@ -117,11 +110,8 @@ function go(){
   }
 }
 
-function xml(){
-  var xml = Blockly.Xml.workspaceToDom(workspace);
-  console.log(xml);
-  var xml_text = Blockly.Xml.domToText(xml);
-  console.log(xml_text);
+function showPhoto(){
+  window.open("/cam.jpg", '_blank');
 }
 
 var workspace = Blockly.inject('blocklyDiv', {
@@ -129,8 +119,8 @@ var workspace = Blockly.inject('blocklyDiv', {
     toolbox: "<xml></xml>"
 });
 
-  
 workspace.registerButtonCallback("go", go);  
+workspace.registerButtonCallback("photo", showPhoto);  
 workspace.updateToolbox( document.getElementById('toolbox'));
 
 function send(payload, cb){

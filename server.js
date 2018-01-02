@@ -25,8 +25,6 @@ function handleMessage(actions){
         handleMessage(actions);
     });
   }
-
-  //controller[message.command](message.duration || 1000);
 }
 
 // serve static files it the public folder
