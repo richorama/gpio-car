@@ -92,6 +92,23 @@ Blockly.JavaScript['gpio_wait'] = function(block) {
   return code;
 };
 
+Blockly.Blocks['gpio_say'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Say")
+        .appendField(new Blockly.FieldTextInput("Hello"), "MESSAGE");
+    this.setColour(105);
+	this.setTooltip("");
+	this.setPreviousStatement(true, null);
+  this.setNextStatement(true, null);
+ 	this.setHelpUrl("");
+  }
+};
+
+Blockly.JavaScript['gpio_say'] = function(block) {
+	var message = block.getFieldValue('MESSAGE');
+  return 'actions.push({action:"say", message:"' + (message || "").replace(/"/g,'""') + '"});\n';
+};
 
 
 function go(){

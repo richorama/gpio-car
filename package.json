@@ -4,6 +4,7 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
+    "flite": "^0.1.2",
     "rpi-gpio": "0.7.0"
   },
   "devDependencies": {},

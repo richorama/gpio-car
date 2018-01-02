@@ -3,8 +3,13 @@ var fs = require('fs');
 var path = require('path');
 var controller = require('./car-controller');
 var exec = require('child_process').exec;
-
-// 
+var flite = require('flite');
+var speech;
+flite(function (err, _speech){
+  if (err) return console.log(err);
+  console.log("initialised speech");
+  speech = _speech;
+})
 
 function handleMessage(actions){
   var action = actions.shift();
@@ -21,8 +26,15 @@ function handleMessage(actions){
 
   if (action.action === "photo"){
     exec('raspistill -vf -hf -o ./public/cam.jpg', function callback(err, stdout, stderr){
-        if (err) console.log(err);
-        handleMessage(actions);
+      if (err) console.log(err);
+      handleMessage(actions);
+    });
+  }
+
+  if (action.action === "say"){
+    speech.say(action.message || "", function(err){
+      if (err) console.log(err);
+      handleMessage(actions);
     });
   }
 }
