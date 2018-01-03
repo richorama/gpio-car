@@ -3,14 +3,14 @@ var fs = require('fs');
 var path = require('path');
 var controller = require('./car-controller');
 var exec = require('child_process').exec;
-var flite = require('flite');
+/*var flite = require('flite');
 var speech;
 flite(function (err, _speech){
   if (err) return console.log(err);
   console.log("initialised speech");
   speech = _speech;
 })
-
+*/
 function handleMessage(actions){
   var action = actions.shift();
   if (null == action) return;
@@ -32,7 +32,7 @@ function handleMessage(actions){
   }
 
   if (action.action === "say"){
-    speech.say(action.message || "", function(err){
+    exec('flite -t "' + (action.message || "") + '"', function(err){
       if (err) console.log(err);
       handleMessage(actions);
     });
