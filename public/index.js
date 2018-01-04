@@ -22,7 +22,7 @@ Blockly.Blocks['gpio_drive'] = {
 			.appendField("Drive")
 			.appendField(new Blockly.FieldDropdown([["forward","fwd"], ["backward","back"], ["left","spinl"], ["right","spinr"]]), "MOVEMENT")
 			.appendField(new Blockly.FieldNumber(0), "AMOUNT");
-		this.setColour(105);
+		this.setColour(90);
 		this.setTooltip("");
 		this.setPreviousStatement(true, null);
     	this.setNextStatement(true, null);
@@ -42,7 +42,7 @@ Blockly.Blocks['gpio_light'] = {
 		this.appendDummyInput()
 			.appendField("Light")
 			.appendField(new Blockly.FieldDropdown([["on","1"], ["off","0"]]), "ONOFF")
-		this.setColour(105);
+		this.setColour(45);
 		this.setTooltip("");
 		this.setPreviousStatement(true, null);
     	this.setNextStatement(true, null);
@@ -61,7 +61,7 @@ Blockly.Blocks['gpio_photo'] = {
 	init: function() {
 		this.appendDummyInput()
 			.appendField("Photo")
-		this.setColour(105);
+		this.setColour(0);
 		this.setTooltip("");
 		this.setPreviousStatement(true, null);
     	this.setNextStatement(true, null);
@@ -78,7 +78,7 @@ Blockly.Blocks['gpio_wait'] = {
     this.appendDummyInput()
         .appendField("Wait")
         .appendField(new Blockly.FieldNumber(0), "NAME")
-    this.setColour(105);
+    this.setColour(270);
 	this.setTooltip("");
 	this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -97,7 +97,7 @@ Blockly.Blocks['gpio_say'] = {
     this.appendDummyInput()
         .appendField("Say")
         .appendField(new Blockly.FieldTextInput("Hello"), "MESSAGE");
-    this.setColour(105);
+    this.setColour(180);
 	this.setTooltip("");
 	this.setPreviousStatement(true, null);
   this.setNextStatement(true, null);
